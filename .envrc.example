@@ -1,5 +1,4 @@
 export AZURE_CONFIG_DIR=$(pwd)/.azcli
-export AZD_CONFIG_DIR=$(pwd)/.azd
 export DATABRICKS_CONFIG_FILE=$(pwd)/.databrickscfg
 export DATABRICKS_CONFIG_PROFILE=DEFAULT
 layout pyenv 3.11.7

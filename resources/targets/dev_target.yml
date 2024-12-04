@@ -6,5 +6,10 @@ targets:
     # See also https://docs.databricks.com/dev-tools/bundles/deployment-modes.html.
     mode: development
     default: true
+    sync: 
+      include: 
+        - ../../src
+      exclude: 
+        - ../../.direnv
     workspace:
       host: https://adb-3265445347030224.4.azuredatabricks.net

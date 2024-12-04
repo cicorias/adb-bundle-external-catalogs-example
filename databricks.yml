@@ -4,6 +4,7 @@ bundle:
   name: adb_reference_bundle
 
 
+
 variables: 
   dev_cluster_id:
     # TODO: Replace the default value with the actual cluster ID
@@ -14,3 +15,8 @@ include:
   - resources/jobs/*.yml
   - resources/variables/*.yml
   - resources/targets/*.yml
+
+sync: 
+  exclude: 
+    - docs/
+    - infra/
