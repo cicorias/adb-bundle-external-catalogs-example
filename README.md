@@ -1,32 +1,76 @@
 # Overview
 
+This repo provides a simple set of Azure Databricks examples that leverages:
 
-## Dependancies
+1. Databricks Bundles for Jobs
+1. Using External Managed Storage for a Databricks Catalog
+1. Terraform for creating a the required External Locations, Catalog, Schemas, and Table
+1. Example of Tests that are run via the `launch.json` capability of Visual Studio Code
+1. Use of Python Packages for Wheel (`.whl`) creation for jobs
+1. Jobs that run a Python Wheel or Python Script
+1. Compatability with the Databricks Visual Studio Code add in
+1. Compatability and reliance on the Databricks CLI
 
-This simple walkthrough assumes that a Azure Databricks Unity Catalog Metastore exists in the Azure Region that all work will be done.
+Unity Catalog provides a central discovery and resolution for credentials, external locations, and other governance services. It should be an important part of any well managed product or service.
 
-Unity Catalog provides a central discovery and resolution for credentials, external locations, and other governance services.
+
+> [!IMPORTANT]  
+>> This simple walkthrough assumes that a Azure Databricks Unity Catalog Metastore exists in the Azure Region that all work will be done.
+>> Assumptions: ADB Workspace exists AND it is tied to a Regional Unity Catalog Metastore
+
 
 ## Environment Setup
 
+After you clone the repo there are a set of steps required to get up and running.
+
+
+### Tools
+First the following set of tools are used.
+
+- [Visual Studio Code - start with the Python Profile](https://code.visualstudio.com)
+- [Databricks Extension for VS Code](https://docs.databricks.com/dev-tools/vscode-ext.html)
 - [Taskfile.dev](https://taskfile.dev/installation/#binary)
-- [Azure CLI]()
-- [Databricks CLI]()
-- [Python 3.11]()
-- [erraform v1.10]()
+- [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
+- [Databricks CLI](https://docs.databricks.com/dev-tools/cli/index.html)
+- [Python 3.11 - with pyenv (my favorite)](https://realpython.com/intro-to-pyenv/#installing-python-versions-with-pyenv)
+- [Python 3.11 - alternative path with uv from Astral](https://docs.astral.sh/uv/guides/install-python/)
+- [Terraform v1.10](https://learn.hashicorp.com/tutorials/terraform/install-cli)
+- [direnv - not required but useful](https://direnv.net/docs/installation.html) 
 
 
+> [!TIP]
+> The repo contains example `.envrc` files which are used by `direnv` tool to automatically add `ENV` variables to the local shell environments. In addition, it can automtically create Python Virtualenvs. Explore more at [direnv.net](https://direnv.net)
 
-##
+## Configuration
+
+After you setup the tools a few steps are needed to get the full experience.
+
+### Copy or Rename all the `*.example` files as needed.
+
+There are files in the following paths that should be reviewed initially.
+
+```shell
+-- resources/jobs
+-- resources/targets
+-- resources/variables
+```
 
 
+> [!TIP]
+> The convention used in this repo is to help decouple various environment specific settings such as host names, cluster IDs etc. that are generally embedded in the `databricks.yml` file. There may be other ways to decouple however, I found this is easiest at this point. For example for `target/jobs/host` names, there is no way to provide a variable or substiution in the files. So, simple `includes` is a method.  
 
-### Configuration
+> [!WARNING]
+> from the Databricks documention [Databricks Asset Bundle configuration- Other workspace mappings](https://docs.databricks.com/en/dev-tools/bundles/settings.html#other-workspace-mappings)
+>> You must hard-code values for the following workspace mappings for Databricks authentication. For instance, you cannot specify custom variables for these mappings’ values by using the `${var.*}` syntax.
+
+
+#### File: `resources/jobs/`
+
+For this file, there is nothing needed except to review and understand
+
 
 - Azure CLI Login
-
 - Databricks Configure
-
 - 
 
 
