@@ -31,15 +31,15 @@ The initial script using the Azure CLI login session first queries the list of A
 
 
 #### Region and Workspace Selection
-![](./tf-configure.png)
+![configure tf](./tf-configure.png)
 
 
 #### Settings in `.env` file
-![](./tf-settings.png)
+![env settings](./tf-settings.png)
 
 
 #### Terraform Apply Done
-![](./tf-done.png)
+![apply done](./tf-done.png)
 
 
 
@@ -47,12 +47,12 @@ The initial script using the Azure CLI login session first queries the list of A
 
 At the end you will now have external locations for Catalog (databases), Dropzone, and Checkpoints (put your inferred schema here)
 
-![](uc-ext.png)
+![unity catalog](uc-ext.png)
 
 
 With a new Catalog in catalog explorer that has a Bronze, Silver, and Gold schema and an `event` table in the Bronze schema that showing the details we can see this is at our Azure ADLSv2 storage location.
 
-![](uc-storage.png)
+![catalog storage](uc-storage.png)
 
 ## Azure Resources
 
@@ -63,15 +63,18 @@ In the Azure portal you can see the Resource Group with
 - Storage account
 
 ### Resource Group
-![](az-rg.png)
+![azure resource group view](az-rg.png)
 
 
 ### RBAC Assignments for Managed Identity
-![](az-rbac.png)
+![azure rbac view](az-rbac.png)
 
 
-## Destroy 
-
+## Cleanup and Destroy 
 
 > [!CAUTION]
 > At this point, you can run the `task destroy` but be aware this destroys all data in the catalog just created.
+
+![destroy prompt](tf-destroy.png)
+
+![destroy done](tf-destroy-done.png)

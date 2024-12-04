@@ -44,6 +44,9 @@ tasks:
   destroy:
     cmds:
       - terraform destroy -auto-approve
+    prompt:
+     - This will result in complete loss of the Storage Account just created and non-recoverable data loss... Do you want to continue?
+     - Are you sure?
     desc: Destroy Terraform
     dotenv:
       - .env
