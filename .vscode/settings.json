@@ -1,0 +1,36 @@
+{
+    "python.analysis.stubPath": ".vscode",
+    "databricks.python.envFile": "${workspaceFolder}/.env",
+    "jupyter.interactiveWindow.cellMarker.codeRegex": "^# COMMAND ----------|^# Databricks notebook source|^(#\\s*%%|#\\s*\\<codecell\\>|#\\s*In\\[\\d*?\\]|#\\s*In\\[ \\])",
+    "jupyter.interactiveWindow.cellMarker.default": "# COMMAND ----------",
+    "python.testing.pytestArgs": [
+        "."
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true,
+    "python.analysis.extraPaths": ["src"],
+    "files.exclude": {
+        "**/*.egg-info": true,
+        "**/__pycache__": true,
+        ".pytest_cache": true,
+    },
+    "sqltools.connections": [
+        {
+            "connectionMethod": "VS Code Extension (beta)",
+            "catalog": "hive_metastore",
+            "previewLimit": 50,
+            "driver": "Databricks",
+            "schema": "default",
+            "name": "taxis",
+            "path": "sql/protocolv1/o/3265445347030224/1127-172916-cbvclw8y"
+        },
+        {
+            "connectionMethod": "VS Code Extension (beta)",
+            "catalog": "adb_reference_app",
+            "previewLimit": 50,
+            "driver": "Databricks",
+            "name": "events",
+            "path": "sql/protocolv1/o/3265445347030224/1127-172916-cbvclw8y"
+        }
+    ],
+}

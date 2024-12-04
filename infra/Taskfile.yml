@@ -1,0 +1,50 @@
+# https://taskfile.dev
+
+version: '3'
+
+tasks:
+  configure:
+    cmds:
+      - scripts/configure_env.sh
+    desc: Configure environment
+    sources:
+      - scripts/configure_env.sh
+    generates:
+      - .env
+
+  tfinit:
+    cmds:
+      - terraform init
+    desc: Initialize Terraform
+    deps: [configure]
+    sources:
+      - databricks.tf
+      - main.tf
+      - output.tf
+      - provider.tf
+    generates:
+      - .terraform.lock.hcl
+
+  apply:
+    cmds:
+      - echo "$TF_VAR_location"
+      - export $(grep -v '^#' .env | xargs)
+      - terraform apply -auto-approve
+    desc: Apply Terraform
+    deps: [tfinit]
+    generates:
+      - terraform.tfstate
+    dotenv:
+      - .env
+
+  destroy:
+    cmds:
+      - terraform destroy -auto-approve
+    desc: Destroy Terraform
+    dotenv:
+      - .env
+
+  tidy:
+    cmds:
+      - rm -rf ./.terraform .task/ terraform.tfstate terraform.tfstate.backup .env .env.bak || true
+    desc: Clean up

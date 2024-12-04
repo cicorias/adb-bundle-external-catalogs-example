@@ -1,0 +1,12 @@
+targets:
+  prod:
+    mode: production
+    workspace:
+      host: https://adb-3265445347030224.4.azuredatabricks.net
+      # We explicitly specify /Users/admin@mngenv629772.onmicrosoft.com to make sure we only have a single copy.
+      root_path: /Users/admin@mngenv629772.onmicrosoft.com/.bundle/${bundle.name}/${bundle.target}
+    permissions:
+      - user_name: admin@mngenv629772.onmicrosoft.com
+        level: CAN_MANAGE
+    run_as:
+      user_name: admin@mngenv629772.onmicrosoft.com

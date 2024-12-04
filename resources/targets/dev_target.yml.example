@@ -1,0 +1,16 @@
+# rename or copy this file to prod_target.yml
+# update the host to the production workspace URL
+# update the root_path to a unique path for the production target
+# update the user_name to the production user
+# run "databricks auth describe" perhaps to get your user_name and host
+targets:
+  dev:
+    # The default target uses 'mode: development' to create a development copy.
+    # - Deployed resources get prefixed with '[dev my_user_name]'
+    # - Any job schedules and triggers are paused by default.
+    # See also https://docs.databricks.com/dev-tools/bundles/deployment-modes.html.
+    mode: development
+    default: true
+    workspace:
+      # TODO: put in the real workspace URL
+      host: https://adb-[REPLACE ME].azuredatabricks.net

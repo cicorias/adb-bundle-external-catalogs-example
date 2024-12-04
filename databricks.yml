@@ -1,0 +1,16 @@
+# This is a Databricks asset bundle definition for adb_reference_bundle.
+# See https://docs.databricks.com/dev-tools/bundles/index.html for documentation.
+bundle:
+  name: adb_reference_bundle
+
+
+variables: 
+  dev_cluster_id:
+    # TODO: Replace the default value with the actual cluster ID
+    #default: 1127-172916-cbvclw8y
+    default: 1202-182534-v8rldjs9
+
+include:
+  - resources/jobs/*.yml
+  - resources/variables/*.yml
+  - resources/targets/*.yml

@@ -1,0 +1,20 @@
+# rename or copy this file to prod_target.yml
+# update the host to the production workspace URL
+# update the root_path to a unique path for the production target
+# update the user_name to the production user
+# run "databricks auth describe" perhaps to get your user_name and host
+targets:
+  prod:
+    mode: production
+    workspace:
+      # TODO: put in the real workspace URL
+      host: https://adb-[REPLACE ME].4.azuredatabricks.net
+      # TODO: put in the real root path with a email address perhaps
+      root_path: /Users/[REPLACE ME]/.bundle/${bundle.name}/${bundle.target}
+    permissions:
+    # TODO: put in the real user_name
+      - user_name: [REPLACE ME]
+        level: CAN_MANAGE
+    run_as:
+    # TODO: put in the real user_name
+      user_name: [REPLACE ME]

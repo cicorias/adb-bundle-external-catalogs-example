@@ -1,0 +1,6 @@
+[DEFAULT]
+host  = https://adb-3265445347030224.4.azuredatabricks.net
+token = TOKEN FROM ADB
+
+[dev]
+host  = https://adb-3265445347030224.4.azuredatabricks.net

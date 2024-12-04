@@ -1,0 +1,79 @@
+# The main job for adb_reference_bundle.
+resources:
+  jobs:
+    basic_job:
+      name: basic_job
+      tasks:
+        - task_key: get_taxis
+          existing_cluster_id: ${var.dev_cluster_id}
+
+          python_wheel_task: 
+            package_name: adb_reference_bundle
+            entry_point: main
+          libraries:
+            - whl: ../../dist/*.whl
+
+    basic_job_py:
+      name: basic_job_py
+      tasks:
+        - task_key: get_taxis
+          existing_cluster_id: ${var.dev_cluster_id}
+
+          spark_python_task: 
+            python_file: ${workspace.file_path}/src/adb_reference_bundle/main.py
+
+    basic_job_new:
+      name: basic_job_new
+      tasks:
+        - task_key: get_taxis
+          job_cluster_key: basic_cluster
+
+          python_wheel_task: 
+            package_name: adb_reference_bundle
+            entry_point: main
+          libraries:
+            - whl: ../../dist/*.whl
+
+      job_clusters:
+      - job_cluster_key: basic_cluster
+        new_cluster:
+          spark_version: 15.4.x-scala2.12
+          node_type_id: Standard_D3_v2
+          autoscale:
+              min_workers: 1
+              max_workers: 4
+
+    adb_reference_bundle_job:
+      name: adb_reference_bundle_job
+
+      trigger:
+        # Run this job every day, exactly one day from the last run; see https://docs.databricks.com/api/workspace/jobs/create#trigger
+        periodic:
+          interval: 1
+          unit: DAYS
+
+      email_notifications:
+        on_failure:
+        # TODO: put in a real email
+          - someone@nobody.onmicrosoft.com
+
+      tasks:
+        - task_key: main_task
+          job_cluster_key: job_cluster
+          python_wheel_task:
+            package_name: adb_reference_bundle
+            entry_point: main
+          libraries:
+            # By default we just include the .whl file generated for the adb_reference_bundle package.
+            # See https://docs.databricks.com/dev-tools/bundles/library-dependencies.html
+            # for more information on how to add other libraries.
+            - whl: ../../dist/*.whl
+
+      job_clusters:
+        - job_cluster_key: job_cluster
+          new_cluster:
+            spark_version: 15.4.x-scala2.12
+            node_type_id: Standard_D3_v2
+            autoscale:
+                min_workers: 1
+                max_workers: 4
