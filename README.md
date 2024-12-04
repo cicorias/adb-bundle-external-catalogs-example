@@ -8,8 +8,8 @@ This repo provides a simple set of Azure Databricks examples that leverages:
 1. Example of Tests that are run via the `launch.json` capability of Visual Studio Code
 1. Use of Python Packages for Wheel (`.whl`) creation for jobs
 1. Jobs that run a Python Wheel or Python Script
-1. Compatability with the Databricks Visual Studio Code add in
-1. Compatability and reliance on the Databricks CLI
+1. Compatibility with the Databricks Visual Studio Code add in
+1. Compatibility and reliance on the Databricks CLI
 
 Unity Catalog provides a central discovery and resolution for credentials, external locations, and other governance services. It should be an important part of any well managed product or service.
 
@@ -18,6 +18,31 @@ Unity Catalog provides a central discovery and resolution for credentials, exter
 >> This simple walkthrough assumes that a Azure Databricks Unity Catalog Metastore exists in the Azure Region that all work will be done.
 >> Assumptions: ADB Workspace exists AND it is tied to a Regional Unity Catalog Metastore
 
+## TOC
+
+- [Overview](#overview)
+- [TOC](#toc)
+- [Environment Setup](#environment-setup)
+    - [Tools](#tools)
+- [Configuration](#configuration)
+    - [Copy or Rename all the `*.example` files as needed](#copy-or-rename-all-the-example-files-as-needed)
+        - [File: `.envrc.example`](#file-envrcexample)
+        - [Files: `resources/jobs/`](#files-resourcesjobs)
+        - [Files: `resources/targets/`](#files-resourcestargets)
+        - [Files: `resources/variables/`](#files-resourcesvariables)
+    - [Azure CLI Login](#azure-cli-login)
+    - [Databricks Configure](#databricks-configure)
+- [Running Jobs](#running-jobs)
+    - [Validate](#validate)
+        - [Databricks VS Code Extension](#databricks-vs-code-extension)
+        - [Databricks CLI](#databricks-cli)
+    - [Deploy the Bundle](#deploy-the-bundle)
+    - [Run a job](#run-a-job)
+    - [Destroy the Bundle](#destroy-the-bundle)
+- [Terraform Catalog, Schema, and Table](./docs/terraform-catalog.md)
+- [Background information](#background-information)
+- [adb_reference_bundle](#adb_reference_bundle)
+- [Getting started](#getting-started)
 
 ## Environment Setup
 
@@ -151,8 +176,6 @@ databricks bundle destroy -t dev
 
 ![bundle deploy](./docs/adb-failed-deploy.png )
 
-
-Run a job with 
 
 # Background information
 
