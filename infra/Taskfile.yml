@@ -26,10 +26,14 @@ tasks:
       - .terraform.lock.hcl
 
   apply:
-    cmds:
-      - echo "$TF_VAR_location"
-      - export $(grep -v '^#' .env | xargs)
-      - terraform apply -auto-approve
+    # bit of a hack here as taskfile.dev tool doesn't seem to be able to read .env file after it's been modified after task started...
+    cmd: |
+      echo "$TF_VAR_location"
+      export $(grep -v '^#' .env | xargs)
+      cat .env
+      env|sort|grep TF_VAR
+      echo "target location $TF_VAR_location"
+      terraform apply -auto-approve
     desc: Apply Terraform
     deps: [tfinit]
     generates:
