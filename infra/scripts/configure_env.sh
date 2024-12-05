@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -x
 # Set paths
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT_DIR="$(cd "$SCRIPT_DIR/../.." && pwd)"
@@ -17,6 +17,16 @@ if [[ -f "$ENV_FILE" ]]; then
   cp "$ENV_FILE" "$ENV_FILE.bak"
 fi
 
+
+# Function to check if the az cli is installed and NOT for Windows
+check_az_cli() {
+    # call the `az --version1` and ensure the string "Python (Windows)" does Not appear
+    if az --version | grep -q "Python (Windows)"; then
+        echo -e "\e[31mAzure CLI is not version for Linux/Darwin/WSL. Please install a proper native version.\e[0m"
+        exit 1
+    fi
+}
+
 # Function to update or add a variable in the .env file
 update_env_var() {
   local key=$1
@@ -27,6 +37,10 @@ update_env_var() {
     echo "${key}=${value}" >> "$ENV_FILE"
   fi
 }
+
+# Preflight checks
+
+check_az_cli
 
 # Step 1: Get Azure Subscription
 echo "Fetching the current Azure subscription..."
